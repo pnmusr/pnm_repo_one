@@ -738,7 +738,7 @@
 							"/**checking the resposne status code*/",
 							"",
 							"const actualJsonResponse = pm.response.json();",
-							"const ofr_reference = actualJsonResponse.items[0];",
+							"const ofr_reference = actualJsonResponse.items[0].reference;",
 							"",
 							"pm.test(\"Checking Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -746,7 +746,6 @@
 							"",
 							"",
 							"pm.test(\"Checking ocean rate reference  \", function () {",
-							"    console.log(cont_size);",
 							"   pm.expect(ofr_reference).to.equal(\"FXH97WX9T.00001\");",
 							"});",
 							""
@@ -1004,6 +1003,367 @@
 				},
 				{
 					"id": "86234077-2594-4353-b548-f39a797a0295",
+					"name": "Example-MissingPortsODischarge",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pcs/v5/applicableOceanFreightRates?cargoWeight=18000&cargoWeightUnit=Kilogram&containerSpecifications=20DV&destinations=INAGR&freightIsOfAllKinds=True&portsOfLoading=USBAL&rateCardTypes=Tariff&reason=instantquote&validAfter=12+SEP+2021&CargoIsDangerous=False&ContainerIsShipperOwned=False&reference=FXH97WX9T.00001.1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pcs",
+								"v5",
+								"applicableOceanFreightRates"
+							],
+							"query": [
+								{
+									"key": "cargoWeight",
+									"value": "18000"
+								},
+								{
+									"key": "cargoWeightUnit",
+									"value": "Kilogram"
+								},
+								{
+									"key": "containerSpecifications",
+									"value": "20DV"
+								},
+								{
+									"key": "destinations",
+									"value": "INAGR"
+								},
+								{
+									"key": "freightIsOfAllKinds",
+									"value": "True"
+								},
+								{
+									"key": "portsOfDischarge",
+									"value": "INNSA",
+									"disabled": true
+								},
+								{
+									"key": "portsOfLoading",
+									"value": "USBAL"
+								},
+								{
+									"key": "rateCardTypes",
+									"value": "Tariff"
+								},
+								{
+									"key": "reason",
+									"value": "instantquote"
+								},
+								{
+									"key": "validAfter",
+									"value": "12+SEP+2021"
+								},
+								{
+									"key": "CargoIsDangerous",
+									"value": "False"
+								},
+								{
+									"key": "ContainerIsShipperOwned",
+									"value": "False"
+								},
+								{
+									"key": "reference",
+									"value": "FXH97WX9T.00001.1"
+								}
+							]
+						}
+					},
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"severity\": \"Error\",\n        \"targetPath\": \"PortsOfDischarge\",\n        \"correlationId\": \"4d851304-7d70-41af-b111-3a1d684bef74\",\n        \"key\": \"ApplicableOceanFreightRateQueryMissingPortsOfDischarge\",\n        \"defaultMessage\": \"Missing ports of discharge.\",\n        \"messageFormatParameters\": [],\n        \"isFailure\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "/AOFR Checking RateCardType",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9da20351-f899-4286-bf1f-89c4001b157d",
+						"exec": [
+							"/**checking the resposne status code*/",
+							"",
+							"const actualJsonResponse = pm.response.json();",
+							"const rate_card_type = actualJsonResponse.items[0].rateCardType;",
+							"",
+							"pm.test(\"Checking Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Checking ocean rate reference  \", function () {",
+							"   pm.expect(rate_card_type).to.equal(\"Tariff\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "517fd497-7d54-4c3d-a415-74a601ccd853",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/pcs/v5/applicableOceanFreightRates?cargoWeight=18000&cargoWeightUnit=Kilogram&containerSpecifications={{cont-size}}&destinations=INAGR&freightIsOfAllKinds=True&portsOfDischarge={{pod}}&portsOfLoading={{pol}}&rateCardTypes={{rateCardTypes}}&reason={{reason_instant}}&validAfter=12+SEP+2021&CargoIsDangerous=False&ContainerIsShipperOwned=False&reference={{rate_reference}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pcs",
+						"v5",
+						"applicableOceanFreightRates"
+					],
+					"query": [
+						{
+							"key": "cargoWeight",
+							"value": "18000"
+						},
+						{
+							"key": "cargoWeightUnit",
+							"value": "Kilogram"
+						},
+						{
+							"key": "containerSpecifications",
+							"value": "{{cont-size}}"
+						},
+						{
+							"key": "destinations",
+							"value": "INAGR"
+						},
+						{
+							"key": "freightIsOfAllKinds",
+							"value": "True"
+						},
+						{
+							"key": "portsOfDischarge",
+							"value": "{{pod}}"
+						},
+						{
+							"key": "portsOfLoading",
+							"value": "{{pol}}"
+						},
+						{
+							"key": "rateCardTypes",
+							"value": "{{rateCardTypes}}"
+						},
+						{
+							"key": "reason",
+							"value": "{{reason_instant}}"
+						},
+						{
+							"key": "validAfter",
+							"value": "12+SEP+2021"
+						},
+						{
+							"key": "CargoIsDangerous",
+							"value": "False"
+						},
+						{
+							"key": "ContainerIsShipperOwned",
+							"value": "False"
+						},
+						{
+							"key": "reference",
+							"value": "{{rate_reference}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "3f401d3d-43a8-4043-aa3d-349496bad813",
+					"name": "Full Json Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pcs/v5/applicableOceanFreightRates?cargoWeight=18000&cargoWeightUnit=Kilogram&containerSpecifications=20DV&destinations=INAGR&freightIsOfAllKinds=True&portsOfDischarge=INNSA&portsOfLoading=USBAL&rateCardTypes=Tariff&reason=instantquote&validAfter=12+SEP+2021&CargoIsDangerous=False&ContainerIsShipperOwned=False&reference=FXH97WX9T.00001.1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pcs",
+								"v5",
+								"applicableOceanFreightRates"
+							],
+							"query": [
+								{
+									"key": "cargoWeight",
+									"value": "18000"
+								},
+								{
+									"key": "cargoWeightUnit",
+									"value": "Kilogram"
+								},
+								{
+									"key": "containerSpecifications",
+									"value": "20DV"
+								},
+								{
+									"key": "destinations",
+									"value": "INAGR"
+								},
+								{
+									"key": "freightIsOfAllKinds",
+									"value": "True"
+								},
+								{
+									"key": "portsOfDischarge",
+									"value": "INNSA"
+								},
+								{
+									"key": "portsOfLoading",
+									"value": "USBAL"
+								},
+								{
+									"key": "rateCardTypes",
+									"value": "Tariff"
+								},
+								{
+									"key": "reason",
+									"value": "instantquote"
+								},
+								{
+									"key": "validAfter",
+									"value": "12+SEP+2021"
+								},
+								{
+									"key": "CargoIsDangerous",
+									"value": "False"
+								},
+								{
+									"key": "ContainerIsShipperOwned",
+									"value": "False"
+								},
+								{
+									"key": "reference",
+									"value": "FXH97WX9T.00001.1"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"items\": [\n        {\n            \"reference\": \"FXH97WX9T.00001\",\n            \"version\": 1,\n            \"externalReference\": \"PCS-SANITY- PURPOSE DO NOT MODIFY\",\n            \"rateCardType\": \"Tariff\",\n            \"tariffTier\": 1,\n            \"rateHolders\": [],\n            \"nacCodes\": [],\n            \"portsOfLoading\": [\n                {\n                    \"portId\": 84,\n                    \"unCode\": \"USBAL\"\n                }\n            ],\n            \"portsOfDischarge\": [\n                {\n                    \"portId\": 31,\n                    \"unCode\": \"INNSA\"\n                }\n            ],\n            \"origins\": [],\n            \"originDryPorts\": [],\n            \"destinationDryPorts\": [],\n            \"destinations\": [\n                {\n                    \"locationId\": 3946,\n                    \"unCode\": \"INAGR\"\n                }\n            ],\n            \"destinationModeOfTransport\": \"TBA\",\n            \"containerSpecifications\": [\n                {\n                    \"containerSizeTypeId\": 6,\n                    \"sizeAndType\": \"20DV\",\n                    \"isNonOperatingReefer\": false\n                }\n            ],\n            \"containerIsEmpty\": false,\n            \"weightUnit\": \"Kilogram\",\n            \"commodityHarmonizedSystemCodes\": [],\n            \"commodityHarmonizedSystemCodesExclusions\": [],\n            \"dangerousCargoSubstances\": [],\n            \"dangerousCargoClass\": [],\n            \"loadingVessels\": [],\n            \"amountIsAllIn\": false,\n            \"voyage\": null,\n            \"currencyId\": 180,\n            \"route\": null,\n            \"originShipmentMethod\": \"FCL\",\n            \"destinationShipmentMethod\": \"FCL\",\n            \"accessorialChargeGroups\": [\n                {\n                    \"conditions\": [\n                        {\n                            \"portsOfLoading\": [\n                                {\n                                    \"portId\": 84,\n                                    \"unCode\": \"USBAL\"\n                                }\n                            ],\n                            \"portsOfDischarge\": [\n                                {\n                                    \"portId\": 31,\n                                    \"unCode\": \"INNSA\"\n                                }\n                            ],\n                            \"containerSpecifications\": [\n                                {\n                                    \"containerSizeTypeId\": 6,\n                                    \"sizeAndType\": \"20DV\",\n                                    \"isNonOperatingReefer\": false\n                                }\n                            ],\n                            \"origins\": [],\n                            \"originDryPorts\": [],\n                            \"destinations\": [\n                                {\n                                    \"locationId\": 3946,\n                                    \"unCode\": \"INAGR\"\n                                }\n                            ],\n                            \"destinationDryPorts\": [],\n                            \"containerIsShipperOwned\": false,\n                            \"cargoIsDangerous\": false\n                        }\n                    ],\n                    \"accessorialCharges\": [\n                        {\n                            \"chargeCodeId\": 127,\n                            \"rates\": [\n                                {\n                                    \"calculationMethod\": {\n                                        \"type\": \"FixedAmount\",\n                                        \"amount\": 40,\n                                        \"currency\": \"USD\",\n                                        \"chargeLevel\": \"Teu\",\n                                        \"calculationMethodDescription\": \"USD 40 per Teu\",\n                                        \"currencyId\": 180\n                                    },\n                                    \"validFrom\": \"2019-11-01\",\n                                    \"validTo\": null,\n                                    \"amount\": 40,\n                                    \"currency\": \"USD\"\n                                }\n                            ],\n                            \"isInvoicedAsAllIn\": false,\n                            \"code\": \"RNT\",\n                            \"reference\": \"A9W4HCHNW\",\n                            \"group\": \"Ocean\",\n                            \"applicability\": \"AsFreight\",\n                            \"isLocal\": false,\n                            \"isPaidWithFreight\": false,\n                            \"applicabilityToFreightAmount\": \"SubjectTo\",\n                            \"isWaived\": false,\n                            \"isInvoicedAsAllInGroupName\": null,\n                            \"isInvoicedAsAllInGroupID\": null,\n                            \"longDisplayName\": \"Round trip [RNT]\",\n                            \"visibleOnManifest\": true,\n                            \"dtx\": \"RNT\",\n                            \"isVatos\": true,\n                            \"paymentMethods\": \"Prepaid, Collect, Elsewhere\",\n                            \"paymentMethodsAgencies\": null,\n                            \"hasRemainingConditions\": false\n                        },\n                        {\n                            \"chargeCodeId\": 15,\n                            \"rates\": [],\n                            \"isInvoicedAsAllIn\": false,\n                            \"code\": \"CCL\",\n                            \"reference\": \"APKJHKHRF\",\n                            \"group\": \"Ocean\",\n                            \"applicability\": \"AsFreight\",\n                            \"isLocal\": false,\n                            \"isPaidWithFreight\": false,\n                            \"applicabilityToFreightAmount\": \"SubjectTo\",\n                            \"isWaived\": false,\n                            \"isInvoicedAsAllInGroupName\": null,\n                            \"isInvoicedAsAllInGroupID\": null,\n                            \"longDisplayName\": \"Container cleaning [CCL]\",\n                            \"visibleOnManifest\": true,\n                            \"dtx\": \"CCL\",\n                            \"isVatos\": true,\n                            \"paymentMethods\": \"Prepaid, Collect, Elsewhere\",\n                            \"paymentMethodsAgencies\": null,\n                            \"hasRemainingConditions\": false\n                        },\n                        {\n                            \"chargeCodeId\": 22,\n                            \"rates\": [\n                                {\n                                    \"calculationMethod\": {\n                                        \"type\": \"FixedAmount\",\n                                        \"amount\": 200,\n                                        \"currency\": \"USD\",\n                                        \"chargeLevel\": \"Equipment\",\n                                        \"calculationMethodDescription\": \"USD 200 per Equipment\",\n                                        \"currencyId\": 180\n                                    },\n                                    \"validFrom\": \"2021-01-25\",\n                                    \"validTo\": null,\n                                    \"amount\": 200,\n                                    \"currency\": \"USD\"\n                                }\n                            ],\n                            \"isInvoicedAsAllIn\": false,\n                            \"code\": \"CMD\",\n                            \"reference\": \"APJJXCPTN\",\n                            \"group\": \"Ocean\",\n                            \"applicability\": \"AtDestination\",\n                            \"isLocal\": false,\n                            \"isPaidWithFreight\": false,\n                            \"applicabilityToFreightAmount\": \"SubjectTo\",\n                            \"isWaived\": false,\n                            \"isInvoicedAsAllInGroupName\": null,\n                            \"isInvoicedAsAllInGroupID\": null,\n                            \"longDisplayName\": \"Mis declaration fee [CMD]\",\n                            \"visibleOnManifest\": true,\n                            \"dtx\": \"CMD\",\n                            \"isVatos\": true,\n                            \"paymentMethods\": \"Prepaid, Collect, Elsewhere\",\n                            \"paymentMethodsAgencies\": null,\n                            \"hasRemainingConditions\": false\n                        }\n                    ]\n                }\n            ],\n            \"bookingPeriodStart\": null,\n            \"bookingPeriodEnd\": null,\n            \"quoteExpirationDate\": null,\n            \"numberOfDaysUntilQuoteExpiration\": null,\n            \"validFrom\": \"2022-07-28\",\n            \"validTo\": null,\n            \"calculationDate\": \"2022-07-28\",\n            \"minWeight\": null,\n            \"maxWeight\": 18000,\n            \"amount\": 123,\n            \"currency\": \"USD\",\n            \"paymentMethods\": \"Prepaid, Collect, Elsewhere\",\n            \"paymentMethodsAgencies\": null,\n            \"publicationChannel\": \"Instant quote,Instant quote premium\",\n            \"temperatureUnit\": \"Celsius\",\n            \"minTemperature\": null,\n            \"maxTemperature\": null\n        }\n    ],\n    \"count\": 1,\n    \"totalCount\": 1,\n    \"pageIndex\": 0,\n    \"totalPages\": 1\n}"
+				},
+				{
+					"id": "d931fa32-2b39-409c-835e-8a29480dfcac",
+					"name": "Example-MissingPortsOLoading",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pcs/v5/applicableOceanFreightRates?cargoWeight=18000&cargoWeightUnit=Kilogram&containerSpecifications=20DV&destinations=INAGR&freightIsOfAllKinds=True&portsOfDischarge=INNSA&rateCardTypes=Tariff&reason=instantquote&validAfter=12+SEP+2021&CargoIsDangerous=False&ContainerIsShipperOwned=False&reference=FXH97WX9T.00001.1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pcs",
+								"v5",
+								"applicableOceanFreightRates"
+							],
+							"query": [
+								{
+									"key": "cargoWeight",
+									"value": "18000"
+								},
+								{
+									"key": "cargoWeightUnit",
+									"value": "Kilogram"
+								},
+								{
+									"key": "containerSpecifications",
+									"value": "20DV"
+								},
+								{
+									"key": "destinations",
+									"value": "INAGR"
+								},
+								{
+									"key": "freightIsOfAllKinds",
+									"value": "True"
+								},
+								{
+									"key": "portsOfDischarge",
+									"value": "INNSA"
+								},
+								{
+									"key": "portsOfLoading",
+									"value": "USBAL",
+									"disabled": true
+								},
+								{
+									"key": "rateCardTypes",
+									"value": "Tariff"
+								},
+								{
+									"key": "reason",
+									"value": "instantquote"
+								},
+								{
+									"key": "validAfter",
+									"value": "12+SEP+2021"
+								},
+								{
+									"key": "CargoIsDangerous",
+									"value": "False"
+								},
+								{
+									"key": "ContainerIsShipperOwned",
+									"value": "False"
+								},
+								{
+									"key": "reference",
+									"value": "FXH97WX9T.00001.1"
+								}
+							]
+						}
+					},
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"severity\": \"Error\",\n        \"targetPath\": \"PortsOfLoading\",\n        \"correlationId\": \"4d851304-7d70-41af-b111-3a1d684bef74\",\n        \"key\": \"ApplicableOceanFreightRateQueryMissingPortsOfLoading\",\n        \"defaultMessage\": \"Missing ports of loading.\",\n        \"messageFormatParameters\": [],\n        \"isFailure\": true\n    }\n]"
+				},
+				{
+					"id": "956fee4d-70a5-4011-9834-65ab8d0a9e39",
 					"name": "Example-MissingPortsODischarge",
 					"originalRequest": {
 						"method": "GET",
