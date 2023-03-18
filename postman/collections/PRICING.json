@@ -738,7 +738,7 @@
 							"/**checking the resposne status code*/",
 							"",
 							"const actualJsonResponse = pm.response.json();",
-							"const ofr_reference = actualJsonResponse.items[0];",
+							"const ofr_reference = actualJsonResponse.items[0].reference;",
 							"",
 							"pm.test(\"Checking Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -746,7 +746,6 @@
 							"",
 							"",
 							"pm.test(\"Checking ocean rate reference  \", function () {",
-							"    console.log(cont_size);",
 							"   pm.expect(ofr_reference).to.equal(\"FXH97WX9T.00001\");",
 							"});",
 							""
