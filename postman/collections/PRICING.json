@@ -1106,6 +1106,7 @@
 							"const actualJsonResponse = pm.response.json();",
 							"const cont_size = actualJsonResponse.items[0].containerSpecifications[0].sizeAndType;",
 							"const publicationChannel =actualJsonResponse.items[0].publicationChannel;",
+							"",
 							"const ofrPaymentMethod =actualJsonResponse.items[0].paymentMethods;",
 							"",
 							"",
